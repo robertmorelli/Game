@@ -21,16 +21,16 @@ public class Game {
 
 		Player me = new Player(WASD, theBoard.boardWidth, theBoard.boardHeight, Color.YELLOW,theBoard);
 
-		int[][] spawnBox=new int[][] { { 0, 24 }, { 0, 24 } };
+		int[][] spawnBox=new int[][] { { 12, 24 }, { 12, 24 } };
 		Ghost BLINKY = new Ghost(new DFSFinder(theBoard),spawnBox , me,theBoard, Color.RED);
-		Ghost PINKY = new Ghost(new DFSFinder(theBoard), spawnBox, me,theBoard, Color.PINK);
-		Ghost INKY = new Ghost(new DFSFinder(theBoard), spawnBox, me,theBoard, Color.CYAN);
+		Ghost PINKY = new Ghost(new BFSFinder(theBoard), spawnBox, me,theBoard, Color.PINK);
+		Ghost INKY = new Ghost(new BFSFinder(theBoard), spawnBox, me,theBoard, Color.CYAN);
 		Ghost CLYDE = new Ghost(new DFSFinder(theBoard), spawnBox, me,theBoard, Color.ORANGE);
 
 		JFrame jf = new JFrame();
 		displayPanel jp2 = new displayPanel();
 		jp2.Board = theBoard;
-		jp2.characters = new Displayable[] { me};//,BLINKY,PINKY,INKY,CLYDE };
+		jp2.characters = new Displayable[] { me,BLINKY,PINKY,INKY,CLYDE };
 		jf.addKeyListener(me.listening);
 
 		jf.add(jp2);
