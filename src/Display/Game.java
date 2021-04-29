@@ -1,7 +1,5 @@
 package Display;
 
-import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -10,6 +8,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.concurrent.TimeUnit;
+
+import javax.swing.JFrame;
 
 
 public class Game {
