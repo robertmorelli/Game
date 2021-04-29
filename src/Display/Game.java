@@ -32,7 +32,7 @@ public class Game {
 		JFrame jf = new JFrame();
 		displayPanel jp2 = new displayPanel();
 		
-		
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		
 		startButton start= new startButton();
 		//jp2.addMouseListener(start.listening);

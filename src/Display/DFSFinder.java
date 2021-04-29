@@ -4,6 +4,8 @@ import java.util.Iterator;
 
 import edu.princeton.cs.algs4.DepthFirstPaths;
 import edu.princeton.cs.algs4.Graph;
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.Stack;
 
 public class DFSFinder implements Finder {
 	Graph gameG;
@@ -31,9 +33,13 @@ public class DFSFinder implements Finder {
 		oldy1 = y1;
 		oldx2 = x2;
 		oldy2 = y2;
+		Queue<Integer> boyo=new Queue<Integer>();
 		if (!currentPath.hasNext()) {
 			DepthFirstPaths df = new DepthFirstPaths(gameG, (y1 * b.boardWidth) + x1);
-			currentPath = df.pathTo((y2 * b.boardWidth) + x2).iterator();
+			for(int t:df.pathTo((y2 * b.boardWidth) + x2)) {
+				boyo.enqueue(t);
+			}
+			currentPath = boyo.iterator();
 			return pipe.getConnections(b.getCharAtDefulat(x1, y1))[0];
 		}
 		int i = currentPath.next();
