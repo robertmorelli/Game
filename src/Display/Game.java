@@ -7,6 +7,7 @@ import java.awt.Point;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
@@ -24,10 +25,20 @@ public class Game {
 	public static GameBoard gameB;
 	static char theChar = 'z';
 	public static gameState GAME = gameState.pregame;
+	public static scoreBoard scores;
 	// static char[] defualtBoard = new char[boardHeight * (boardWidth + 1)];
 
 	public static void main(String[] args) throws InterruptedException {
 		dif=difficulties.easy;
+		scores=new scoreBoard();
+		try {
+			scores.retrieveScores();
+			scores.retrieveNames();
+			ScoreBoardDisplay.oraganisescores();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		JFrame jf = new JFrame();
 		displayPanel jp2 = new displayPanel();
@@ -68,7 +79,8 @@ public class Game {
 		}
 	}
 
-	public static void gameOver() {
+	public static void gameOver() throws IOException {
+		scores.endGame(mainChar.score);
 		GAME = gameState.lost;
 	}
 

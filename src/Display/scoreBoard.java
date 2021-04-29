@@ -19,14 +19,15 @@ public class scoreBoard {
 
 	// Insert the final score as the parameter.
 	public void endGame(int finalScore) throws IOException {
-		List<String> scores = retrieveScores();
-		addNewScore(finalScore, scores);
-		writeScores(scores);
-		showLeaderBoard(scores);
+		//List<String> scores = retrieveScores();
+		//addNewScore(finalScore, scores);
+		//writeScores(scores);
+		writeAndNames();
+		//showLeaderBoard(scores);
 	}
 
 	// Retrieves scores from score.txt file
-	private List<String> retrieveScores() throws IOException {
+	public List<String> retrieveScores() throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader("src/resources/score.txt"));
 		String scoreLine = reader.readLine(); // read line that contains scores
 		List<String> scores = new ArrayList<>();
@@ -34,8 +35,30 @@ public class scoreBoard {
 			String[] tempScore = scoreLine.split(", ");
 			scores = new ArrayList<>(Arrays.asList(tempScore));
 		}
+		ScoreBoardDisplay.leaderScores=new int[scores.size()];
+		int index=0;
+		for(String score:scores) {
+			ScoreBoardDisplay.leaderScores[index++]=Integer.parseInt(score);
+		}
 		reader.close();
 		return scores;
+	}
+	public List<String> retrieveNames() throws IOException {
+		BufferedReader reader = new BufferedReader(new FileReader("src/resources/names.txt"));
+		String namesLine = reader.readLine(); // read line that contains scores
+		
+		List<String> names = new ArrayList<>();
+		if (namesLine != null) { // in case of first game
+			String[] tempScore = namesLine.split(", ");
+			names = new ArrayList<>(Arrays.asList(tempScore));
+		}
+		ScoreBoardDisplay.leaderNames=new String[names.size()];
+		int index=0;
+		for(String name:names) {
+			ScoreBoardDisplay.leaderNames[index++]=name;
+		}
+		reader.close();
+		return names;
 	}
 
 	// Adds the new scores to the scores list
@@ -60,6 +83,21 @@ public class scoreBoard {
 		writer.write(outputScores);
 		writer.close();
 	}
+	public void writeAndNames() throws IOException {
+		FileWriter namefile = new FileWriter("src/resources/names.txt");
+		FileWriter scorefile = new FileWriter("src/resources/score.txt");
+		namefile.write(String.join(", ",Arrays.asList(ScoreBoardDisplay.leaderNames)));
+		
+		List<String> scores = new ArrayList<>(ScoreBoardDisplay.leaderScores.length);
+		for (int i : ScoreBoardDisplay.leaderScores) { 
+			scores.add(i+""); 
+		}
+		scorefile.write(String.join(", ",scores));
+		scorefile.write(", "+Game.mainChar.score);
+		namefile.write(", "+ScoreBoardDisplay.myName);
+		namefile.close();
+		scorefile.close();
+	}
 
 	// Shows the leader board at the end of the game
 	private void showLeaderBoard(List<String> scores) {
@@ -70,5 +108,7 @@ public class scoreBoard {
 			i++;
 		}
 	}
+	
+	
 
 }

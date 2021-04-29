@@ -2,6 +2,7 @@ package Display;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.io.IOException;
 
 public class Ghost implements Displayable {
 
@@ -53,7 +54,12 @@ public class Ghost implements Displayable {
 		
 		
 		if (Math.abs(posX - target.playerPosX)<1 && Math.abs(posY - target.playerPosY)<1) {
-			Game.gameOver();
+			try {
+				Game.gameOver();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}

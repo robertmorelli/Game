@@ -9,9 +9,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.util.*;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+//import com.sun.tools.javac.util.List;
 
 public class ScoreBoardDisplay implements Displayable,listeningtostuff {
 	public static String myName = "Anon";
@@ -36,6 +40,23 @@ public class ScoreBoardDisplay implements Displayable,listeningtostuff {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public static void oraganisescores() {
+		String[] leaderComb=new String[leaderNames.length];
+		//int[] namelengths=new int[leaderNames.length];
+		//String hi= 30);
+		for(int p=0;p<leaderNames.length;p++) {
+			leaderComb[p]=String.format("%09d",leaderScores[p])+","+leaderNames[p];
+			
+		}
+		Arrays.sort(leaderComb);
+		for(int p=0;p<leaderNames.length;p++) {
+			leaderScores[leaderNames.length-p-1]=Integer.parseInt(leaderComb[p].split(",")[0]);
+			leaderNames[leaderNames.length-p-1]=leaderComb[p].split(",")[1];
+		}
+		
+	}
+	
 
 	@Override
 	public void raster(Graphics2D g2d) {
@@ -54,7 +75,7 @@ public class ScoreBoardDisplay implements Displayable,listeningtostuff {
 		for (int i = 0; i < 5; i++) {
 			g2d.drawString((i + 1) + "", 20, 40 * (i + 2));
 		}
-
+		
 		for (int i = 0; i < 5; i++) {
 			g2d.drawString(leaderNames[i], 60, 40 * (i + 2));
 		}
