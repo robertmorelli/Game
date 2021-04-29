@@ -1,6 +1,6 @@
 package Display;
 
-import java.awt.BasicStroke;
+//import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -8,8 +8,8 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.IOException;
+//import java.awt.event.MouseListener;
+//import java.io.IOException;
 import java.util.*;
 
 import javax.swing.JFrame;
@@ -30,7 +30,7 @@ public class ScoreBoardDisplay implements Displayable,listeningtostuff {
 	public ScoreBoardDisplay() {
 		//listening = new boardListener();
 		nameboax = new JFrame();
-		name = new JTextField("hi please work");
+		name = new JTextField("Anon");
 		nameboax.add(name);
 		nameboax.setSize(300, 80);
 	}
@@ -72,18 +72,18 @@ public class ScoreBoardDisplay implements Displayable,listeningtostuff {
 		g2d.setColor(Color.WHITE);
 		g2d.drawString("Scores", 20, 40);
 		g2d.setFont(new Font("Consolas", Font.BOLD, 20));
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			g2d.drawString((i + 1) + "", 20, 40 * (i + 2));
 		}
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			g2d.drawString(leaderNames[i], 60, 40 * (i + 2));
 		}
-		for (int i = 0; i < 5; i++) {
-			g2d.drawString(leaderScores[i] + "", 220, 40 * (i + 2));
+		for (int i = 0; i < 10; i++) {
+			g2d.drawString(leaderScores[i] + "", 520, 40 * (i + 2));
 		}
 
-		g2d.drawString("set name", 500, 770);
+		g2d.drawString("set name ["+myName+"]", 500, 770);
 		g2d.setColor(Color.RED);
 		g2d.setFont(new Font("Consolas", Font.BOLD, 20));
 		g2d.drawString("leave Leaderboard", 500, 800);

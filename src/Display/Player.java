@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.net.URISyntaxException;
 
 public class Player implements Displayable {
 
@@ -31,7 +33,6 @@ public class Player implements Displayable {
 
 	public Player(int[] controlls, int boardWidthIn, int boardHeightIn, Color color, GameBoard laBoard) {
 
-		int whichFrame = 0;
 		up = controlls[0];
 		down = controlls[1];
 		left = controlls[2];
@@ -141,6 +142,8 @@ public class Player implements Displayable {
 		g2d.setColor(Color.BLACK);
 		g2d.fillRoundRect(20, 986, 20 + 60 * (("" + score).length()) - 20, 80, 10, 10);
 		g2d.setColor(Color.WHITE);
-		g2d.drawString("" + score, 20, 1056);
+		File file=null;
+		
+		g2d.drawString("" +score, 20, 1056);
 	}
 }

@@ -64,7 +64,6 @@ public class GameBoard implements Displayable {
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, 0, boardWidth * squarewidth + 200, boardHeight * squarewidth + 200);
 
-		
 		int lineN = 0;
 		int ovalSize = 10;
 		String rastersting = new String(BoardString);
@@ -87,18 +86,20 @@ public class GameBoard implements Displayable {
 		}
 
 	}
-	
-	
+
+	public int frame = 0;
+
 	public void gameOverScreen(Graphics2D g2d) {
 		int alpha = 20; // 50% transparent
 		Color myColor = new Color(0, 0, 0, alpha);
 		g2d.setColor(myColor);
-		g2d.fillRect(0,0,783, 770);
-		g2d.setColor(Color.RED);
-		g2d.setFont(new Font("Consolas", Font.BOLD, 40));
-		g2d.drawString("GAME OVER!", 275, 350);
-		
-		
+		g2d.fillRect(0, 0, 783, 770);
+		if (frame++ > 80) {
+			g2d.setColor(Color.RED);
+			g2d.setFont(new Font("Consolas", Font.BOLD, 40));
+			g2d.drawString("GAME OVER!", 275, 350);
+		}
+
 	}
 
 	public void putCharAtDefulat(char val, int x, int y) {

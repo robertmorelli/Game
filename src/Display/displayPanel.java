@@ -1,6 +1,6 @@
 package Display;
 
-import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -10,7 +10,7 @@ public class displayPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	Displayable[] characters;
-	GameBoard Board;
+
 	ScoreBoardDisplay scoreboard;
 	
 	// public String DisplayString = new String("");
@@ -20,7 +20,7 @@ public class displayPanel extends JPanel {
 		if(Game.GAME==gameState.pregame) {
 			super.paint(g);
 			Graphics2D g2d = (Graphics2D) g;
-			Board.raster(g2d);
+			Game.gameB.raster(g2d);
 			for (Displayable character : characters) {
 				//character.update(Board);
 				character.raster(g2d);
@@ -41,14 +41,16 @@ public class displayPanel extends JPanel {
 		if (Game.GAME==gameState.game) {
 			super.paint(g);
 			Graphics2D g2d = (Graphics2D) g;
-			Board.raster(g2d);
+			Game.gameB.raster(g2d);
 			for (Displayable character : characters) {
-				character.update(Board);
+				character.update(Game.gameB);
 				character.raster(g2d);
 			}
 		}
 		if(Game.GAME==gameState.lost) {
-			Board.gameOverScreen((Graphics2D) g);
+			Game.gameB.gameOverScreen((Graphics2D) g);
+			
+			Game.rest.raster((Graphics2D) g);
 		}
 		/*
 		 * Kernel kernel = new Kernel(7, 7, new float[] { 0f/1003f ,0f/1003f ,1f/1003f

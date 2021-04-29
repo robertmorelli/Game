@@ -3,6 +3,7 @@ package Display;
 import java.awt.Graphics2D;
 import java.io.IOException;
 
+@SuppressWarnings("unused")
 public interface Displayable {
 	void update(GameBoard laBoard);
 

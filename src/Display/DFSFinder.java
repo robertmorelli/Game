@@ -5,7 +5,7 @@ import java.util.Iterator;
 import edu.princeton.cs.algs4.DepthFirstPaths;
 import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.Queue;
-import edu.princeton.cs.algs4.Stack;
+
 
 public class DFSFinder implements Finder {
 	Graph gameG;
@@ -15,6 +15,7 @@ public class DFSFinder implements Finder {
 	int oldy1 = -100;
 	int oldx2 = -100;
 	int oldy2 = -100;
+	
 	Iterator<Integer> currentPath;
 
 	public DFSFinder(GameBoard g) {
