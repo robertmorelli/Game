@@ -39,7 +39,6 @@ public class Game {
 		jf.setVisible(true);
 
 		while (true) {
-			//TimeUnit.MILLISECONDS.sleep(2);
 			jp2.repaint();
 		}
 	}
