@@ -37,7 +37,7 @@ public class Game {
 		startButton start= new startButton();
 		//jp2.addMouseListener(start.listening);
 		
-		ScoreBoard theScore= new ScoreBoard();
+		ScoreBoardDisplay theScore= new ScoreBoardDisplay();
 		jp2.scoreboard=theScore;
 		
 		GameBoard theBoard = new GameBoard(24,24);

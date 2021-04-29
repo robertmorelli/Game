@@ -11,7 +11,7 @@ public class displayPanel extends JPanel {
 
 	Displayable[] characters;
 	GameBoard Board;
-	ScoreBoard scoreboard;
+	ScoreBoardDisplay scoreboard;
 	
 	// public String DisplayString = new String("");
 
