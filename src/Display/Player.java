@@ -42,6 +42,13 @@ public class Player implements Displayable {
 		playerColor = color;
 		theBoard = laBoard;
 	}
+	
+	public void setKeys(int[] controlls) {
+		up = controlls[0];
+		down = controlls[1];
+		left = controlls[2];
+		right = controlls[3];
+	}
 
 	class playListener implements KeyListener {
 		@Override

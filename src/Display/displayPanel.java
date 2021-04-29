@@ -11,14 +11,34 @@ public class displayPanel extends JPanel {
 
 	Displayable[] characters;
 	GameBoard Board;
+	ScoreBoard scoreboard;
 	
 	// public String DisplayString = new String("");
 
 	@Override
 	public void paint(Graphics g) {
+		if(Game.GAME==gameState.pregame) {
+			super.paint(g);
+			Graphics2D g2d = (Graphics2D) g;
+			Board.raster(g2d);
+			for (Displayable character : characters) {
+				//character.update(Board);
+				character.raster(g2d);
+			}
+		}
 		
 		
-		if (Game.GAME) {
+		if(Game.GAME==gameState.scoreboard) {
+			super.paint(g);
+			scoreboard.drawLeaders((Graphics2D) g);
+		}
+		
+		if(Game.GAME==gameState.settings) {
+			super.paint(g);
+			Settings.displaySettings((Graphics2D) g);
+		}
+		
+		if (Game.GAME==gameState.game) {
 			super.paint(g);
 			Graphics2D g2d = (Graphics2D) g;
 			Board.raster(g2d);
@@ -27,7 +47,7 @@ public class displayPanel extends JPanel {
 				character.raster(g2d);
 			}
 		}
-		else {
+		if(Game.GAME==gameState.lost) {
 			Board.gameOverScreen((Graphics2D) g);
 		}
 		/*
