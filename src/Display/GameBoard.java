@@ -90,7 +90,7 @@ public class GameBoard implements Displayable {
 	
 	
 	public void gameOverScreen(Graphics2D g2d) {
-		int alpha = 127; // 50% transparent
+		int alpha = 20; // 50% transparent
 		Color myColor = new Color(0, 0, 0, alpha);
 		g2d.setColor(myColor);
 		g2d.fillRect(0,0,783, 770);
