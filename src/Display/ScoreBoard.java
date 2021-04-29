@@ -17,9 +17,9 @@ public class ScoreBoard implements Displayable,listeningtostuff {
 	public static String myName = "Anon";
 	JFrame nameboax;
 	JTextField name;
-	public static String[] leaderNames = { "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "still jeff",
+	public static String[] leaderNames = { "jeff", "jeff", "jeff", "still jeff",
 			"randy" };
-	public static int[] leaderScores = { 400, 300, 200, 100, 50, 25, 20, 15, 10, 5 };
+	public static int[] leaderScores = {  25, 20, 15, 10, 5 };
 
 	//public boardListener listening;
 
@@ -51,14 +51,14 @@ public class ScoreBoard implements Displayable,listeningtostuff {
 		g2d.setColor(Color.WHITE);
 		g2d.drawString("Scores", 20, 40);
 		g2d.setFont(new Font("Consolas", Font.BOLD, 20));
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 5; i++) {
 			g2d.drawString((i + 1) + "", 20, 40 * (i + 2));
 		}
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 5; i++) {
 			g2d.drawString(leaderNames[i], 60, 40 * (i + 2));
 		}
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 5; i++) {
 			g2d.drawString(leaderScores[i] + "", 220, 40 * (i + 2));
 		}
 
@@ -88,7 +88,6 @@ public class ScoreBoard implements Displayable,listeningtostuff {
 		Point p = e.getPoint();
 		int x = p.x;
 		int y = p.y;
-		//System.out.println(x+" : "+y);
 		if (x > 500 && x < 660 && y > 800 && y < 840) {
 
 			if (Game.GAME == gameState.pregame) {
