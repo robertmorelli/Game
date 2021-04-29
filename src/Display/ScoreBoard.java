@@ -1,108 +1,74 @@
 package Display;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.JTextField;
+/**
+ * Class to print out the score board for the top 5 scores.
+ * 
+ * @author Kody Berry
+ * @author Robert Morelli
+ *
+ */
+public class scoreBoard {
 
-public class ScoreBoard implements Displayable,listeningtostuff {
-	public static String myName = "Anon";
-	JFrame nameboax;
-	JTextField name;
-	public static String[] leaderNames = { "jeff", "jeff", "jeff", "still jeff",
-			"randy" };
-	public static int[] leaderScores = {  25, 20, 15, 10, 5 };
-
-	//public boardListener listening;
-
-	public ScoreBoard() {
-		//listening = new boardListener();
-		nameboax = new JFrame();
-		name = new JTextField("hi please work");
-		nameboax.add(name);
-		nameboax.setSize(300, 80);
+	// Insert the final score as the parameter.
+	public void endGame(int finalScore) throws IOException {
+		List<String> scores = retrieveScores();
+		addNewScore(finalScore, scores);
+		writeScores(scores);
+		showLeaderBoard(scores);
 	}
 
-	@Override
-	public void update(GameBoard laBoard) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void raster(Graphics2D g2d) {
-		g2d.setColor(Color.WHITE);
-		g2d.setFont(new Font("Consolas", Font.BOLD, 40));
-		g2d.drawString("Leaderboard", 600, 1000);
-	}
-
-	public void drawLeaders(Graphics2D g2d) {
-		g2d.setColor(Color.BLACK);
-		g2d.fillRect(0, 0, 1000, 1000);
-		g2d.setFont(new Font("Consolas", Font.BOLD, 40));
-		g2d.setColor(Color.WHITE);
-		g2d.drawString("Scores", 20, 40);
-		g2d.setFont(new Font("Consolas", Font.BOLD, 20));
-		for (int i = 0; i < 5; i++) {
-			g2d.drawString((i + 1) + "", 20, 40 * (i + 2));
+	// Retrieves scores from score.txt file
+	private List<String> retrieveScores() throws IOException {
+		BufferedReader reader = new BufferedReader(new FileReader("src/resources/score.txt"));
+		String scoreLine = reader.readLine(); // read line that contains scores
+		List<String> scores = new ArrayList<>();
+		if (scoreLine != null) { // in case of first game
+			String[] tempScore = scoreLine.split(", ");
+			scores = new ArrayList<>(Arrays.asList(tempScore));
 		}
-
-		for (int i = 0; i < 5; i++) {
-			g2d.drawString(leaderNames[i], 60, 40 * (i + 2));
-		}
-		for (int i = 0; i < 5; i++) {
-			g2d.drawString(leaderScores[i] + "", 220, 40 * (i + 2));
-		}
-
-		g2d.drawString("set name", 500, 770);
-		g2d.setColor(Color.RED);
-		g2d.setFont(new Font("Consolas", Font.BOLD, 20));
-		g2d.drawString("leave Leaderboard", 500, 800);
-
+		reader.close();
+		return scores;
 	}
 
-	public void setName() {
-
-		nameboax.setVisible(true);
-		name.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myName = name.getText();
-				nameboax.setVisible(false);
+	// Adds the new scores to the scores list
+	private void addNewScore(int finalScore, List<String> scores) {
+		boolean foundSpotForNewScore = false;
+		int i = 0;
+		while (!foundSpotForNewScore && i < scores.size()) {
+			if (finalScore <= Integer.parseInt(scores.get(i))) {
+				foundSpotForNewScore = true;
 			}
-
-		});
+			i++;
+		}
+		scores.add(i, String.valueOf(finalScore));
 	}
 
+	// Writes scores to File
+	private void writeScores(List<String> scores) throws IOException {
+		FileWriter writer = new FileWriter("src/resources/score.txt");
+		String outputScores = scores.toString();
+		outputScores = outputScores.replace("[", "");
+		outputScores = outputScores.replace("]", "");
+		writer.write(outputScores);
+		writer.close();
+	}
 
-	public void mouseClicked(MouseEvent e) {
-		Point p = e.getPoint();
-		int x = p.x;
-		int y = p.y;
-		if (x > 500 && x < 660 && y > 800 && y < 840) {
-
-			if (Game.GAME == gameState.pregame) {
-				Game.GAME = gameState.scoreboard;
-			} else if (Game.GAME == gameState.scoreboard) {
-				Game.GAME = gameState.pregame;
-			}
-
+	// Shows the leader board at the end of the game
+	private void showLeaderBoard(List<String> scores) {
+		System.out.println("TOP 5 LEADERBOARD");
+		int i = 0;
+		while (i < 5 && i < scores.size()) {
+			System.out.println(scores.get(i));
+			i++;
 		}
-		if (x > 500 && x < 660 && y > 750 && y < 800) {
-			if (Game.GAME == gameState.scoreboard) {
-				setName();
-			}
-		}
-
 	}
 
 }
