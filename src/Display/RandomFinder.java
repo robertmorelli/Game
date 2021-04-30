@@ -4,23 +4,14 @@ import java.security.InvalidAlgorithmParameterException;
 import java.util.Iterator;
 
 import edu.princeton.cs.algs4.DepthFirstPaths;
-import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.Queue;
 
 public class RandomFinder implements Finder {
-	Graph gameG;
-	GameBoard b;
 
-	int oldx1 = 0;
-	int oldy1 = 0;
-	int oldx2 = 0;
-	int oldy2 = 0;
+	int oldx1,oldy1,oldx2,oldy2;
 	Iterator<Integer> currentPath;
 
-	public RandomFinder(GameBoard g) {
-		gameG = g.gameGR;
-		b = g;
-	}
+	
 
 	@Override
 	public cardinal move(int x1, int y1, int x2, int y2) {
@@ -33,37 +24,37 @@ public class RandomFinder implements Finder {
 		y2=y2<0?23:y2;
 		//System.out.println(x2+" : "+y2);
 		if (Math.abs(( (oldx1 - x1) + (oldy1 - y1))) > 8) {
-			DepthFirstPaths df = new DepthFirstPaths(gameG, (y1 * b.boardWidth) + x1);
+			DepthFirstPaths df = new DepthFirstPaths(Game.currentBoard.gameGR, (y1 * Game.currentBoard.boardWidth) + x1);
 			
-			currentPath = df.pathTo((y2 * b.boardWidth) + x2).iterator();
+			currentPath = df.pathTo((y2 * Game.currentBoard.boardWidth) + x2).iterator();
 		}
 		oldx1 = x1;
 		oldy1 = y1;
 		
 		Queue<Integer> boyo=new Queue<Integer>();
 		if (!currentPath.hasNext()) {
-			DepthFirstPaths df = new DepthFirstPaths(gameG, (y1 * b.boardWidth) + x1);
-			for(int t:df.pathTo((y2 * b.boardWidth) + x2)) {
+			DepthFirstPaths df = new DepthFirstPaths(Game.currentBoard.gameGR, (y1 * Game.currentBoard.boardWidth) + x1);
+			for(int t:df.pathTo((y2 * Game.currentBoard.boardWidth) + x2)) {
 				boyo.enqueue(t);
 			}
 			currentPath = boyo.iterator();
-			return pipe.getConnections(b.getCharAtDefulat(x1, y1))[0];
+			return pipe.getConnections(Game.currentBoard.getCharAtDefulat(x1, y1))[0];
 		}
 		oldx1=x1;
 		oldy1=y1;
 		int i = currentPath.next();
 		//System.out.println((y1 - 1) * b.boardWidth + x1);
 		//System.out.println(i);
-		if (i == ((y1 - 1) * b.boardWidth) + x1) {
+		if (i == ((y1 - 1) * Game.currentBoard.boardWidth) + x1) {
 			return cardinal.UP;
 		}
-		if (i == ((y1 + 1) * b.boardWidth) + x1) {
+		if (i == ((y1 + 1) * Game.currentBoard.boardWidth) + x1) {
 			return cardinal.DOWN;
 		}
-		if (i == ((y1) * b.boardWidth) + x1 - 1) {
+		if (i == ((y1) * Game.currentBoard.boardWidth) + x1 - 1) {
 			return cardinal.LEFT;
 		}
-		if (i == ((y1) * b.boardWidth) + x1 + 1) {
+		if (i == ((y1) * Game.currentBoard.boardWidth) + x1 + 1) {
 			return cardinal.RIGHT;
 		}
 		try {

@@ -21,8 +21,7 @@ public class ScoreBoardDisplay implements Displayable,listeningtostuff {
 	public static String myName = "Anon";
 	JFrame nameboax;
 	JTextField name;
-	public static String[] leaderNames = { "jeff", "jeff", "jeff", "still jeff",
-			"randy" };
+	public static String[] leaderNames = { "jeff", "jeff", "jeff", "still jeff","randy" };
 	public static int[] leaderScores = {  25, 20, 15, 10, 5 };
 
 	//public boardListener listening;
@@ -43,8 +42,6 @@ public class ScoreBoardDisplay implements Displayable,listeningtostuff {
 	
 	public static void oraganisescores() {
 		String[] leaderComb=new String[leaderNames.length];
-		//int[] namelengths=new int[leaderNames.length];
-		//String hi= 30);
 		for(int p=0;p<leaderNames.length;p++) {
 			leaderComb[p]=String.format("%09d",leaderScores[p])+","+leaderNames[p];
 			

@@ -11,13 +11,6 @@ import java.awt.event.MouseEvent;
 
 public class Settings implements Displayable, listeningtostuff {
 	public static difficulties difficulty = difficulties.impossible;
-	public static int density = 300;
-
-	// public SettingsListener listening;
-
-	// public Settings() {
-	// listening = new SettingsListener();
-	// }
 
 	@Override
 	public void update(GameBoard laBoard) {
@@ -82,7 +75,7 @@ public class Settings implements Displayable, listeningtostuff {
 		
 		
 		
-		if(Game.dif==difficulties.peaceful ) {
+		if(Game.difficulty==difficulties.peaceful ) {
 			g2d.setColor(Color.RED);
 			g2d.drawString("peaceful", 30, 130);
 			g2d.setColor(Color.WHITE);
@@ -90,7 +83,7 @@ public class Settings implements Displayable, listeningtostuff {
 			g2d.setColor(Color.WHITE);
 			g2d.drawString("impossible", 410, 130);
 		}
-		if(Game.dif==difficulties.easy ) {
+		if(Game.difficulty==difficulties.easy ) {
 			g2d.setColor(Color.WHITE);
 			g2d.drawString("peaceful", 30, 130);
 			g2d.setColor(Color.RED);
@@ -98,7 +91,7 @@ public class Settings implements Displayable, listeningtostuff {
 			g2d.setColor(Color.WHITE);
 			g2d.drawString("impossible", 410, 130);
 		}
-		if(Game.dif==difficulties.impossible ) {
+		if(Game.difficulty==difficulties.impossible ) {
 			g2d.setColor(Color.WHITE);
 			g2d.drawString("peaceful", 30, 130);
 			g2d.setColor(Color.WHITE);
@@ -121,20 +114,20 @@ public class Settings implements Displayable, listeningtostuff {
 				Game.GAME = gameState.settings;
 			} else if (Game.GAME == gameState.settings) {
 				Game.GAME = gameState.pregame;
-				Game.mainChar.setKeys(Game.keyoptions[Game.keyoption]);
-				if(Game.dif==difficulties.peaceful) {
+				Game.mainCharacter.setKeys(Game.keyoptions[Game.keyoption]);
+				if(Game.difficulty==difficulties.peaceful) {
 					for(Ghost g:Game.Ghosts) {
-						g.findAlg=new RandomFinder(Game.gameB);
+						g.findAlg=new RandomFinder();
 					}
 				}
-				if(Game.dif==difficulties.easy) {
+				if(Game.difficulty==difficulties.easy) {
 					for(Ghost g:Game.Ghosts) {
-						g.findAlg=new DFSFinder(Game.gameB);
+						g.findAlg=new DFSFinder();
 					}
 				}
-				if(Game.dif==difficulties.impossible) {
+				if(Game.difficulty==difficulties.impossible) {
 					for(Ghost g:Game.Ghosts) {
-						g.findAlg=new BFSFinder(Game.gameB);
+						g.findAlg=new BFSFinder();
 					}
 				}
 			}
@@ -151,27 +144,17 @@ public class Settings implements Displayable, listeningtostuff {
 			
 			
 			if (x > 40 && x < 250 && y > 130 && y < 160) {
-				Game.dif=difficulties.peaceful;
+				Game.difficulty=difficulties.peaceful;
 			}
 			if (x > 280 && x < 380 && y > 130 && y < 160) {
-				Game.dif=difficulties.easy ;
+				Game.difficulty=difficulties.easy ;
 			}
 			if (x > 420 && x < 700 && y > 130 && y < 160) {
-				Game.dif=difficulties.impossible ;
+				Game.difficulty=difficulties.impossible ;
 			}
 			
 		}
 
-		/*
-		 * Point p = e.getPoint();
-		 * 
-		 * if (Game.GAME == gameState.game) { int x = p.x - 730; int y = p.y - 850;
-		 * 
-		 * if ((x * x + y * y) < 2500) { Game.GAME = gameState.settings; } } else if
-		 * (Game.GAME == gameState.settings) { int x = p.x - 730; int y = p.y - 850;
-		 * 
-		 * if ((x * x + y * y) < 2500) { Game.GAME = gameState.game; } }
-		 */
 
 	}
 
