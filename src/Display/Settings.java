@@ -8,12 +8,18 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
-
+/**
+ * Settings tab class
+ * 
+ * @author Kody Berry
+ * @author Robert Morelli
+ *
+ */
 public class Settings implements Displayable, listeningtostuff {
 	public static difficulties difficulty = difficulties.impossible;
 
 	@Override
-	public void update(GameBoard laBoard) {
+	public void update() {
 
 	}
 

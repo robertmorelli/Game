@@ -7,6 +7,14 @@ import java.net.URISyntaxException;
 
 import javax.swing.JPanel;
 
+
+/**
+ * handles what to render on the screen
+ * 
+ * @author Kody Berry
+ * @author Robert Morelli
+ *
+ */
 public class displayPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +53,7 @@ public class displayPanel extends JPanel {
 			Game.currentBoard.raster(g2d);
 			for (Displayable character : characters) {
 				try {
-					character.update(Game.currentBoard);
+					character.update();
 				} catch (URISyntaxException e) {
 					e.printStackTrace();
 				}

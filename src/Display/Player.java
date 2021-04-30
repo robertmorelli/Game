@@ -84,10 +84,10 @@ public class Player implements Displayable {
 	}
 
 	@Override
-	public void update(GameBoard laBoard) {
+	public void update() {
 		if(PosX%1<0.09&&PosY%1<0.09) {
 			cardinal[] directionsToGo = pipe
-					.getBlockages(laBoard.getCharAtDefulat((int)Math.round(PosX),(int)Math.round(PosY)));
+					.getBlockages(Game.currentBoard.getCharAtDefulat((int)Math.round(PosX),(int)Math.round(PosY)));
 
 			for (cardinal c : directionsToGo) {
 				if (c == cardinal.DOWN && velYtocard() == cardinal.DOWN) {
@@ -110,8 +110,8 @@ public class Player implements Displayable {
 
 		PosX += VelX;
 		PosY += VelY;
-		laBoard.visit((int) PosX, (int) PosY, playerColor);
-		score += laBoard.score((int) PosX, (int) PosY);
+		Game.currentBoard.visit((int) PosX, (int) PosY, playerColor);
+		score += Game.currentBoard.score((int) PosX, (int) PosY);
 
 	}
 

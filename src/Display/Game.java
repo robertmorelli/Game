@@ -12,6 +12,15 @@ import java.net.URISyntaxException;
 
 import javax.swing.JFrame;
 
+
+
+/**
+ * Game class holds static game information and hosts the main()
+ * 
+ * @author Kody Berry
+ * @author Robert Morelli
+ *
+ */
 public class Game {
 
 	public static final int[] WASD = new int[] { 87, 83, 65, 68 };
@@ -25,7 +34,7 @@ public class Game {
 	public static gameState GAME = gameState.pregame;
 	public static scoreBoard leaderBoardIO;
 	public static restartButton restButton;
-	public static int[][] ghostSpawnBox;
+	public static int[][] ghostSpawnBox = new int[][] { { 12, 24 }, { 12, 24 } };
 	public static ScoreBoardDisplay leaderBoard;
 	public static startButton start;
 	public static JFrame MainPanel;
@@ -34,22 +43,21 @@ public class Game {
 
 	public static void main(String[] args) throws InterruptedException, IOException, URISyntaxException {
 		while (true) {
-
+			MainPanel = new JFrame();
+			gameDisplay = new displayPanel();
+			
 			leaderBoardIO = new scoreBoard();
 			leaderBoardIO.ReadNamesAndScoreToFile();
 			ScoreBoardDisplay.oraganisescores();
-			MainPanel = new JFrame();
-			gameDisplay = new displayPanel();
+			
 			MainPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			start = new startButton();
 			leaderBoard = new ScoreBoardDisplay();
-
 			restButton = new restartButton();
-
 			currentBoard = new GameBoard(24, 24);
 			currentBoard.createBoard();
 			mainCharacter = new Player(WASD, Color.YELLOW);
-			ghostSpawnBox = new int[][] { { 12, 24 }, { 12, 24 } };
+			
 			settings = new Settings();
 			MainPanel.addKeyListener(mainCharacter.listening);
 			MainPanel.add(gameDisplay);
@@ -99,15 +107,6 @@ public class Game {
 
 }
 
-class DSTRAFinder implements Finder {
-
-	@Override
-	public cardinal move(int x1, int y1, int x2, int y2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-}
 
 class mouseListener implements MouseListener {
 	public listeningtostuff[] tocall;
@@ -145,7 +144,7 @@ class mouseListener implements MouseListener {
 class startButton implements Displayable, listeningtostuff {
 
 	@Override
-	public void update(GameBoard laBoard) {
+	public void update() {
 	}
 
 	@Override
@@ -172,43 +171,28 @@ class startButton implements Displayable, listeningtostuff {
 			}
 
 		}
-
 	}
-
 }
 
-class restartButton implements Displayable, listeningtostuff {
 
-	@Override
-	public void update(GameBoard laBoard) {
-	}
 
-	public int frame = 0;
 
-	@Override
-	public void raster(Graphics2D g2d) {
-		if (Game.GAME == gameState.lost) {
-			if (frame++ > 100) {
-				g2d.setColor(Color.WHITE);
-				g2d.setFont(new Font("Consolas", Font.BOLD, 40));
-				g2d.drawString("restart", 300, 400);
-			}
-		}
 
-	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		Point p = e.getPoint();
-		int x = p.x;
-		int y = p.y;
-		if (x > 250 && x < 430 && y > 400 && y < 800) {
-			if (Game.GAME == gameState.lost) {
-				Game.GAME = gameState.restarting;
-				frame = 0;
-			}
-		}
 
-	}
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

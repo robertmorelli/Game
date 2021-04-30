@@ -20,7 +20,7 @@ public class Ghost implements Displayable {
 	}
 
 	@Override
-	public void update(GameBoard laBoard) throws URISyntaxException {
+	public void update() throws URISyntaxException {
 		if (posX % 1 < 0.09 && posY % 1 < 0.09) {
 			posX = Math.round(posX);
 			posY = Math.round(posY);

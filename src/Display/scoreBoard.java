@@ -18,15 +18,8 @@ import java.util.List;
  */
 public class scoreBoard {
 
-	public void endGame(int finalScore) throws IOException {
-		try {
-			WriteNamesAndScoreToFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-
+	public void endGame(int finalScore) throws IOException, URISyntaxException {
+		WriteNamesAndScoreToFile();
 	}
 
 	public List<String> retrieveScores() throws IOException, URISyntaxException {
@@ -145,8 +138,7 @@ public class scoreBoard {
 		System.out.println("TOP 5 LEADERBOARD");
 		int i = 0;
 		while (i < 5 && i < scores.size()) {
-			System.out.println(scores.get(i));
-			i++;
+			System.out.println(scores.get(i++));
 		}
 	}
 

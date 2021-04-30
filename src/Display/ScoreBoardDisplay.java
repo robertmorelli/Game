@@ -35,7 +35,7 @@ public class ScoreBoardDisplay implements Displayable,listeningtostuff {
 	}
 
 	@Override
-	public void update(GameBoard laBoard) {
+	public void update() {
 		// TODO Auto-generated method stub
 
 	}

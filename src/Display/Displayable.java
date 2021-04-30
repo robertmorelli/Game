@@ -6,7 +6,7 @@ import java.net.URISyntaxException;
 
 @SuppressWarnings("unused")
 public interface Displayable {
-	void update(GameBoard laBoard) throws URISyntaxException;
+	void update() throws URISyntaxException;
 
 	void raster(Graphics2D g2d);
 }

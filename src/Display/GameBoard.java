@@ -54,7 +54,7 @@ public class GameBoard implements Displayable {
 	}
 
 	@Override
-	public void update(GameBoard laBoard) {
+	public void update() {
 	}
 
 	@Override
