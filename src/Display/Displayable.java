@@ -8,5 +8,5 @@ import java.net.URISyntaxException;
 public interface Displayable {
 	void update() throws URISyntaxException;
 
-	void raster(Graphics2D g2d);
+	void render(Graphics2D g2d);
 }

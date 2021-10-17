@@ -15,7 +15,7 @@ public class restartButton implements Displayable, listeningtostuff {
 	public int frame = 0;
 
 	@Override
-	public void raster(Graphics2D g2d) {
+	public void render(Graphics2D g2d) {
 		if (Game.GAME == gameState.lost) {
 			if (frame++ > 100) {
 				g2d.setColor(Color.WHITE);

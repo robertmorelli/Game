@@ -24,7 +24,7 @@ public class Settings implements Displayable, listeningtostuff {
 	}
 
 	@Override
-	public void raster(Graphics2D g2d) {
+	public void render(Graphics2D g2d) {
 		g2d.setColor(Color.WHITE);
 		g2d.fillOval(860, 980, 80, 80);
 

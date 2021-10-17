@@ -58,7 +58,7 @@ public class GameBoard implements Displayable {
 	}
 
 	@Override
-	public void raster(Graphics2D g2d) {
+	public void render(Graphics2D g2d) {
 
 		g2d.scale(.8, .8);
 		g2d.setColor(Color.BLACK);

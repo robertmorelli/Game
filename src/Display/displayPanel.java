@@ -29,10 +29,10 @@ public class displayPanel extends JPanel {
 		if(Game.GAME==gameState.pregame) {
 			super.paint(g);
 			Graphics2D g2d = (Graphics2D) g;
-			Game.currentBoard.raster(g2d);
+			Game.currentBoard.render(g2d);
 			for (Displayable character : characters) {
 				//character.update(Board);
-				character.raster(g2d);
+				character.render(g2d);
 			}
 		}
 		
@@ -50,20 +50,20 @@ public class displayPanel extends JPanel {
 		if (Game.GAME==gameState.game) {
 			super.paint(g);
 			Graphics2D g2d = (Graphics2D) g;
-			Game.currentBoard.raster(g2d);
+			Game.currentBoard.render(g2d);
 			for (Displayable character : characters) {
 				try {
 					character.update();
 				} catch (URISyntaxException e) {
 					e.printStackTrace();
 				}
-				character.raster(g2d);
+				character.render(g2d);
 			}
 		}
 		if(Game.GAME==gameState.lost) {
 			Game.currentBoard.gameOverScreen((Graphics2D) g);
 			
-			Game.restButton.raster((Graphics2D) g);
+			Game.restButton.render((Graphics2D) g);
 		}
 		/*
 		 * Kernel kernel = new Kernel(7, 7, new float[] { 0f/1003f ,0f/1003f ,1f/1003f

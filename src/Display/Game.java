@@ -148,7 +148,7 @@ class startButton implements Displayable, listeningtostuff {
 	}
 
 	@Override
-	public void raster(Graphics2D g2d) {
+	public void render(Graphics2D g2d) {
 		if (Game.GAME == gameState.pregame) {
 			g2d.setColor(Color.WHITE);
 			g2d.setFont(new Font("Consolas", Font.BOLD, 40));

@@ -56,7 +56,7 @@ public class ScoreBoardDisplay implements Displayable,listeningtostuff {
 	
 
 	@Override
-	public void raster(Graphics2D g2d) {
+	public void render(Graphics2D g2d) {
 		g2d.setColor(Color.WHITE);
 		g2d.setFont(new Font("Consolas", Font.BOLD, 40));
 		g2d.drawString("Leaderboard", 600, 1000);

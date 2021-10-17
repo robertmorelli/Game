@@ -59,7 +59,7 @@ public class Ghost implements Displayable {
 	}
 
 	@Override
-	public void raster(Graphics2D g2d) {
+	public void render(Graphics2D g2d) {
 		g2d.setColor(ghostColor);
 		g2d.fillOval((int) (posX * Game.currentBoard.squarewidth), (int) (posY * Game.currentBoard.squarewidth),
 				Game.currentBoard.squarewidth, Game.currentBoard.squarewidth);

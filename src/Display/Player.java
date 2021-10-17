@@ -116,7 +116,7 @@ public class Player implements Displayable {
 	}
 
 	@Override
-	public void raster(Graphics2D g2d) {
+	public void render(Graphics2D g2d) {
 		g2d.setColor(playerColor);
 		g2d.fillOval((int) (PosX * Game.currentBoard.squarewidth), (int) (PosY * Game.currentBoard.squarewidth),
 				Game.currentBoard.squarewidth, Game.currentBoard.squarewidth);
